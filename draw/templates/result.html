@@ -3,27 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
 </head>
-<body>
+<body >
+
+<nav class="navbar navbar-light bg-info">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="/static/images/ti.png" alt="" width="80" height="44">
+    </a>
+        <a href="{%url 'signout'%}"><input type="submit" value="signout" class="btn btn-danger"></a></div>
+  </div>
+</nav>
 
 <div class="container-fluid">
 
     <div class="row">
-        <div class="col-4"></div>
-        <div class="col-4">
+
+
+
             {%if messages%}
             {%for message in messages%}
-            <div style="color:red;font-size:100px">
-                {{message}}
+         <div class="card w-75 " style="margin-top:30px;margin-left:50px;">
+                  <div class="card-body">
+
+            <div style="color:red;font-size:50px">
+                <p class="card-text"> {{message}}</p>
+                 <a href="{%url 'home'%}" class="btn btn-primary">Back</a>
             </div>
             {%endfor%}
             {%else%}
-            {{lottery.lottery_no}}
-            <h3>Congratulations {{request.user}} you won</h3><h1> ₹{{lottery.lottery_price}}</h1>
+
+<div class="card w-75 " style="margin-top:30px;margin-left:50px;background-image:url(/static/images/cr.gif)">
+
+                  <div class="card-body">
+
+            <div style="color:yellow;font-size:50px">
+                <p class="card-text">Congratulations {{request.user}} you won ₹{{lottery.lottery_price}} </p>
+                 <a href="{%url 'home'%}" class="btn btn-primary">Back</a>
+            </div>
+
             {%endif%}
+                  </div></div>
 
-
-
+<a href="{%url 'result'%}"><input type="submit" class="btn btn-outline-warning" value="Check Your Luck" style="border-radius:85px;height:140px;border-color:red;border-width:5px;margin-top:150px;margin-left:550px"></a>
 
 </body>
 </html>

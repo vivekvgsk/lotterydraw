@@ -53,22 +53,46 @@ class Home(TemplateView):
     template_name = "home.html"
 
 
+# def result(request,*args,**kwargs):
+#     n=1265478
+#     # n=random.randint(1000000,9999999)
+#     lottery=Lottery.objects.get(lottery_no=n)
+#
+#     if lottery:
+#         print("you are lucky")
+#         print(lottery)
+#
+#         return render(request,"result.html",{"lottery":lottery})
+#     else:
+#         print("you are unlucky")
+#         print(n)
+#         print(lottery)
+#         messages.error(request, "Sorry BetterLuck NextTime")
+#
+#         return render(request, "result.html")
+
+
+
+
 def result(request,*args,**kwargs):
-    n=1265478
+    lottery_no=Lottery.objects.all()
+    rs=random.choices(lottery_no, weights=(10, 20, 30, 40, 50), k=1)
+    print("random selection")
+    print(rs)
+    # n=1265478
     # n=random.randint(1000000,9999999)
-    lottery=Lottery.objects.filter(lottery_no=n)
+    lottery=Lottery.objects.get(lottery_no=rs[0])
 
-    if lottery:
-        print("you are lucky")
-        print(lottery)
-        context={"lottery":lottery}
-
-        return render(request,"result.html",context)
-    else:
+    if lottery.lottery_price ==0:
         print("you are unlucky")
-        print(n)
+        print(lottery.lottery_no)
         print(lottery)
         messages.error(request, "Sorry BetterLuck NextTime")
-
         return render(request, "result.html")
+
+    else:
+        print("you are lucky")
+        print(lottery)
+
+        return render(request, "result.html", {"lottery": lottery})
 
