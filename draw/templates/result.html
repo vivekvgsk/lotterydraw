@@ -9,7 +9,7 @@
 </head>
 <body >
 
-<nav class="navbar navbar-light bg-info">
+<nav class="navbar navbar-light bg-warning">
   <div class="container">
     <a class="navbar-brand" href="#">
       <img src="/static/images/ti.png" alt="" width="80" height="44">
@@ -26,23 +26,23 @@
 
             {%if messages%}
             {%for message in messages%}
-         <div class="card w-75 " style="margin-top:30px;margin-left:50px;">
+         <div class="card w-75 " style="margin-top:30px;margin-left:50px;height:250px;margin-left:180px">
                   <div class="card-body">
 
             <div style="color:red;font-size:50px">
                 <p class="card-text"> {{message}}</p>
-                 <a href="{%url 'home'%}" class="btn btn-primary">Back</a>
+
             </div>
             {%endfor%}
             {%else%}
 
-<div class="card w-75 " style="margin-top:30px;margin-left:50px;background-image:url(/static/images/cr.gif)">
+<div class="card w-75 " style="margin-top:30px;margin-left:50px;background-image:url(/static/images/cr.gif);height:250px;margin-left:180px">
 
                   <div class="card-body">
 
             <div style="color:yellow;font-size:50px">
                 <p class="card-text">Congratulations {{request.user}} you won ₹{{lottery.lottery_price}} </p>
-                 <a href="{%url 'home'%}" class="btn btn-primary">Back</a>
+
             </div>
 
             {%endif%}

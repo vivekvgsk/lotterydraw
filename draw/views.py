@@ -45,9 +45,7 @@ class SignoutView(TemplateView):
         logout(request)
         return redirect("signin")
 
-# class Home(TemplateView):
-#     model=Lottery
-#     template_name="home.html"
+
 
 class Home(TemplateView):
     template_name = "home.html"
@@ -75,24 +73,23 @@ class Home(TemplateView):
 
 
 def result(request,*args,**kwargs):
-    lottery_no=Lottery.objects.all()
-    rs=random.choices(lottery_no, weights=(10, 20, 30, 40, 50), k=1)
-    print("random selection")
-    print(rs)
-    # n=1265478
-    # n=random.randint(1000000,9999999)
-    lottery=Lottery.objects.get(lottery_no=rs[0])
+    lottery_no=Lottery.objects.all() #for fetching all lottery objects from model
+    rs=random.choices(lottery_no, weights=(2, 3, 30, 40, 50), k=1) # for creating a random choice from the set of lotteries
+    # print("random selection") #for checking
+    # print(rs) #for checking
+
+    lottery=Lottery.objects.get(lottery_no=rs[0]) # for fetching the value from the random created list
 
     if lottery.lottery_price ==0:
-        print("you are unlucky")
-        print(lottery.lottery_no)
-        print(lottery)
+        # print("you are unlucky") #for checking
+        # print(lottery.lottery_no) #for checking
+        # print(lottery) #for checking
         messages.error(request, "Sorry BetterLuck NextTime")
         return render(request, "result.html")
 
     else:
-        print("you are lucky")
-        print(lottery)
+        # print("you are lucky") #for checking
+        # print(lottery) #for checking
 
         return render(request, "result.html", {"lottery": lottery})
 
