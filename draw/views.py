@@ -52,7 +52,7 @@ class Home(TemplateView):
 
 
 # def result(request,*args,**kwargs):
-#     n=1265478
+
 #     # n=random.randint(1000000,9999999)
 #     lottery=Lottery.objects.get(lottery_no=n)
 #
@@ -74,7 +74,7 @@ class Home(TemplateView):
 
 def result(request,*args,**kwargs):
     lottery_no=Lottery.objects.all() #for fetching all lottery objects from model
-    rs=random.choices(lottery_no, weights=(2, 3, 30, 40, 50), k=1) # for creating a random choice from the set of lotteries
+    rs=random.choices(lottery_no, weights=(2, 3, 30, 40, 50,1), k=1) # for creating a random choice from the set of lotteries
     # print("random selection") #for checking
     # print(rs) #for checking
 
@@ -84,7 +84,7 @@ def result(request,*args,**kwargs):
         # print("you are unlucky") #for checking
         # print(lottery.lottery_no) #for checking
         # print(lottery) #for checking
-        messages.error(request, "Sorry BetterLuck NextTime")
+        messages.error(request, "Better Try NextTime")
         return render(request, "result.html")
 
     else:
